@@ -1,10 +1,8 @@
 class Board
   attr_reader :board
-  WINS = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]]
 
   def initialize
     @board = [' 1 | 2 | 3 ', '-----------', ' 4 | 5 | 6 ', '-----------', ' 7 | 8 | 9 ']
-    @board_positions = Array.new(9)
   end 
 
   def to_s
@@ -14,9 +12,13 @@ class Board
   
   def turn(player, position)
     # debugger
-    if board.any? { |inner| inner.include?(position.to_s) }
-      board.each { |inner| inner.sub!(position.to_s, player.game_symbol) }
-      @board_positions[position] = position
+    if board.any? { |inner| inner.include?(position) }
+      board.each { |inner| inner.sub!(position, player.game_symbol) }
+      puts board
+      player.update_position(position)
+    else
+      puts "Not a valid position."
     end
+
   end
 end

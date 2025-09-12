@@ -11,4 +11,12 @@ class Board
     "#{board[0]}\n#{board[1]}\n#{board[2]}\n#{board[3]}\n#{board[4]}"
   end
 
+  
+  def turn(player, position)
+    # debugger
+    if board.any? { |inner| inner.include?(position.to_s) }
+      board.each { |inner| inner.sub!(position.to_s, player.game_symbol) }
+      @board_positions[position] = position
+    end
+  end
 end

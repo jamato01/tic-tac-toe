@@ -20,21 +20,22 @@ class Game
   end
 
   def position_select
-    # puts @board
     puts "\n#{@current_player}, select a position on the board"
     position = gets.chomp
     @board.turn(@current_player, position)
   end
 
   def next_turn
-    self.position_select
+    is_turn_complete = self.position_select
     if @current_player.check_if_won
-      puts "\n#{@current_player} wins the game!"
-      puts @board
+      puts "\n#{@current_player} wins the game! The winning board:"
+      puts "\n#{@board}"
     elsif !@board.to_s.match(/[1-9]/)
       puts "\nIt's a cat's game! No one wins."
-    else
+    elsif is_turn_complete
       self.switch_player
+      self.next_turn
+    else
       self.next_turn
     end
   end

@@ -15,8 +15,10 @@ class Board
       board.each { |inner| inner.sub!(position, player.game_symbol) }
       puts board
       player.update_position(position)
+      true
     else
       puts "Not a valid position."
+      false
     end
   end
 end

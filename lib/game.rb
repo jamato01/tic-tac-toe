@@ -31,6 +31,8 @@ class Game
     if @current_player.check_if_won
       puts "\n#{@current_player} wins the game!"
       puts @board
+    elsif !@board.to_s.match(/[1-9]/)
+      puts "\nIt's a cat's game! No one wins."
     else
       self.switch_player
       self.next_turn

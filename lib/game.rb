@@ -9,10 +9,10 @@ class Game
 
   def start
     if rand(2) == 1
-      puts "#{@player_1.name} will start."
+      puts "\n#{@player_1.name} will start."
       @current_player = @player_1
     else
-      puts "#{@player_2.name} will start."
+      puts "\n#{@player_2.name} will start."
       @current_player = @player_2
     end
     puts @board
@@ -21,7 +21,7 @@ class Game
 
   def position_select
     # puts @board
-    puts "#{@current_player}, select a position on the board"
+    puts "\n#{@current_player}, select a position on the board"
     position = gets.chomp
     @board.turn(@current_player, position)
   end
@@ -29,7 +29,7 @@ class Game
   def next_turn
     self.position_select
     if @current_player.check_if_won
-      puts "#{@current_player} wins the game!"
+      puts "\n#{@current_player} wins the game!"
       puts @board
     else
       self.switch_player

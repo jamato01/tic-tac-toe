@@ -9,7 +9,7 @@ class Player
   end
 
   def to_s
-    "Player name is #{self.name} and is using #{self.game_symbol}'s."
+    "#{self.name}"
   end
 
   def update_position(position)
@@ -18,11 +18,12 @@ class Player
   end
 
   def check_if_won
+    win_check = false
     WINS.each do |win_condition|
       if win_condition.all? { |win_position| @board_positions.include?(win_position) }
-        puts "#{self.name} wins the game! The winning board:"
-
+        win_check = true
       end
     end
+    win_check
   end
 end

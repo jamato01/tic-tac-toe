@@ -19,6 +19,5 @@ class Board
     else
       puts "Not a valid position."
     end
-
   end
 end

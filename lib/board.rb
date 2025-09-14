@@ -11,8 +11,7 @@ class Board
 
   
   def turn(player, position)
-    # debugger
-    if board.any? { |inner| inner.include?(position) }
+    if position != ' ' && position != '' && board.any? { |inner| inner.include?(position) }
       board.each { |inner| inner.sub!(position, player.game_symbol) }
       puts board
       player.update_position(position)

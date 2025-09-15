@@ -1,22 +1,21 @@
 class Game
-
-  def initialize(player_1, player_2)
-    @player_1 = player_1
-    @player_2 = player_2
-    @current_player = @player_1
+  def initialize(player1, player2)
+    @player1 = player1
+    @player2 = player2
+    @current_player = @player1
     @board = Board.new
   end
 
   def start
     if rand(2) == 1
-      puts "\n#{@player_1.name} will start."
-      @current_player = @player_1
+      puts "\n#{@player1.name} will start."
+      @current_player = @player1
     else
-      puts "\n#{@player_2.name} will start."
-      @current_player = @player_2
+      puts "\n#{@player2.name} will start."
+      @current_player = @player2
     end
     puts @board
-    self.next_turn
+    next_turn
   end
 
   def position_select
@@ -26,25 +25,25 @@ class Game
   end
 
   def next_turn
-    is_turn_complete = self.position_select
+    is_turn_complete = position_select
     if @current_player.check_if_won
       puts "\n#{@current_player} wins the game! The winning board:"
       puts "\n#{@board}"
     elsif !@board.to_s.match(/[1-9]/)
       puts "\nIt's a cat's game! No one wins."
     elsif is_turn_complete
-      self.switch_player
-      self.next_turn
+      switch_player
+      next_turn
     else
-      self.next_turn
+      next_turn
     end
   end
 
   def switch_player
-    if @current_player == @player_1
-      @current_player = @player_2
-    else
-      @current_player = @player_1
-    end
+    @current_player = if @current_player == @player1
+                        @player2
+                      else
+                        @player1
+                      end
   end
 end

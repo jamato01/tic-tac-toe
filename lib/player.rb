@@ -13,7 +13,7 @@ class Player
   end
 
   def update_position(position)
-    @board_positions[position.to_i] = position.to_i
+    @board_positions[position.to_i - 1] = position.to_i
     check_if_won
   end
 
